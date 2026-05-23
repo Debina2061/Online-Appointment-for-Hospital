@@ -73,7 +73,7 @@ class Fetch_Doctors(APIView):
 
     def get(self, request):
         doctorData = DoctorModel.objects.select_related("createdBy").all()
-        if doctorData.count() > 0:
+        if doctorData.count() == 0:
             return Response(
                 {"message": "There is no Doctor information"},
                 status=status.HTTP_404_NOT_FOUND,
