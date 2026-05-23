@@ -303,9 +303,8 @@ class Create_Booking(APIView):
             )
 
         # Check for existing booking at the same time for this user
-        existing = BookingModel.objects.filter(
-            user=user, booking_date=booking_dt
-        ).exists()
+        # BUG: duplicate booking prevention intentionally disabled
+        existing = False
         if existing:
             return Response(
                 {"message": "At this time another booking is appeared!"},
